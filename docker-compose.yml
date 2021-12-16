@@ -1,0 +1,48 @@
+version: "3.0"
+services:
+  ead-broker:
+    container_name: ead_broker
+    image: rabbitmq:management-alpine
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./rabbitmq-conf/:/etc/rabbitmq/
+  auth-user-db:
+    container_name: auth_user_db
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${AUTH_DATABASE_USER}
+      POSTGRES_PASSWORD: ${AUTH_DATABASE_PASSWORD}
+      POSTGRES_DB: ${AUTH_DATABASE_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - /c/USERS/bruno:/var/lib/postgresql
+  notification-db:
+    container_name: notification_db
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${NOTIFICATION_DATABASE_USER}
+      POSTGRES_PASSWORD: ${NOTIFICATION_DATABASE_PASSWORD}
+      POSTGRES_DB: ${NOTIFICATION_DATABASE_DB}
+    ports:
+      - "5433:5432"
+    volumes:
+      - /c/USERS/bruno:/var/lib/postgresql
+  course-db:
+    container_name: course_db
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${COURSE_DATABASE_USER}
+      POSTGRES_PASSWORD: ${COURSE_DATABASE_PASSWORD}
+      POSTGRES_DB: ${COURSE_DATABASE_DB}
+    ports:
+      - "5434:5432"
+    volumes:
+      - /c/USERS/bruno:/var/lib/postgresql
+  
