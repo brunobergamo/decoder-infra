@@ -1,16 +1,16 @@
 version: "3.0"
 services:
   ead-broker:
-    container_name: ead_broker
+    container_name: ead_broker2
     image: rabbitmq:management-alpine
     restart: always
     ports:
       - "5672:5672"
-      - "15672:15672"
+      - "15692:15672"
     volumes:
       - ./rabbitmq-conf/:/etc/rabbitmq/
   auth-user-db:
-    container_name: auth_user_db
+    container_name: auth_user_db2
     image: postgres:13-alpine
     restart: always
     environment:
@@ -22,7 +22,7 @@ services:
     volumes:
       - /c/USERS/bruno:/var/lib/postgresql
   notification-db:
-    container_name: notification_db
+    container_name: notification_db2
     image: postgres:13-alpine
     restart: always
     environment:
@@ -34,7 +34,7 @@ services:
     volumes:
       - /c/USERS/bruno:/var/lib/postgresql
   course-db:
-    container_name: course_db
+    container_name: course_db2
     image: postgres:13-alpine
     restart: always
     environment:
