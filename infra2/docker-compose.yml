@@ -33,6 +33,18 @@ services:
       - "5433:5432"
     volumes:
       - /c/USERS/bruno:/var/lib/postgresql
+  notification-db-hex:
+    container_name: notification_db2hex
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: notificationDbHex
+    ports:
+      - "5435:5432"
+    volumes:
+      - /c/USERS/bruno:/var/lib/postgresql
   course-db:
     container_name: course_db2
     image: postgres:13-alpine
